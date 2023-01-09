@@ -1,8 +1,7 @@
 <nav class="navbar navbar-expand-lg">
               <div class="container">
                 <div class="navbar-translate">
-                <img  src="/assets/images/logo.png" alt="logo" width="50" height="40" class="z-depth-2">
-                  <a class="navbar-brand" href="/admin/announcements">{{ trans('panel.site_title') }}</a>
+                  <a class="navbar-brand text-dark" href="/">{{ trans('panel.site_title') }}</a>
                   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#example-navbar-danger" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-bar bar1"></span>
                     <span class="navbar-toggler-bar bar2"></span>
@@ -15,65 +14,37 @@
 
                   @else
                     @if (Auth::user())
-                        @can('user_access')
-                            <li class="nav-item">
-                              <a class="nav-link {{ request()->is('admin/user')  ? 'active' : '' }}" href="/admin/user">
-                                <p>HOME</p>
-                              </a>
-                            </li>
-                            <li class="nav-item">
-                              <a class="nav-link {{ request()->is('admin/user/offboarding') || request()->is('admin/user/offboarding/*') ? 'active' : '' }}" href="/admin/user/offboarding">
-                                <p>OFFBOARDING</p>
-                              </a>
-                            </li>
-                        @endcan
-                      
+                     
                       @can('admin_access')
                         <li class="nav-item">
-                          <a class="nav-link {{ request()->is('admin/home')  ? 'active' : '' }}" href="/admin/home">
+                          <a class="nav-link text-dark {{ request()->is('admin/home')  ? 'active' : '' }}" href="/admin/home">
                             <p>HOME</p>
                           </a>
                         </li>
                         <li class="nav-item">
-                          <a class="nav-link {{ request()->is('admin/registration')  ? 'active' : '' }}" href="/admin/registration">
-                            <p>REGISTRATION</p>
+                          <a class="nav-link text-dark {{ request()->is('admin/complaints')  ? 'active' : '' }}" href="/admin/complaints">
+                            <p>COMPLAINTS</p>
                           </a>
                         </li>
                         <li class="nav-item">
-                          <a class="nav-link {{ request()->is('admin/master_list')  ? 'active' : '' }}" href="/admin/master_list">
-                            <p>MASTER LIST</p>
-                          </a>
-                        </li>
-                        <!-- <li class="nav-item">
-                          <a class="nav-link {{ request()->is('admin/email')  ? 'active' : '' }}" href="/admin/email">
-                            <p>REGISTER EMAIL</p>
-                          </a>
-                        </li> -->
-                        <li class="nav-item">
-                          <a class="nav-link {{ request()->is('admin/applications') || request()->is('admin/applications/*') ? 'active' : '' }}" href="/admin/applications">
-                            <p>APPLICATIONS</p>
+                          <a class="nav-link text-dark {{ request()->is('admin/users')  ? 'active' : '' }}" href="/admin/users">
+                            <p>USERS</p>
                           </a>
                         </li>
                       @endcan
                     
                     @else
                       <li class="nav-item">
-                        <a class="nav-link {{ request()->is('login') || request()->is('login/*') ? 'active' : '' }}" href="/login">
+                        <a class="nav-link text-dark {{ request()->is('login') || request()->is('login/*') ? 'active' : '' }}" href="/login">
                           <p>Login</p>
                         </a>
                       </li>
-                      <li class="nav-item">
-                        <a class="nav-link {{ request()->is('register') || request()->is('register/*') ? 'active' : '' }}" href="/register">
-                          <p>Register</p>
-                        </a>
-                      </li>
-                     
                     @endif
                     
                       
                       @if (Auth::user())
                         <li class="nav-item dropdown ml-4">
-                          <a href="#" class="nav-link dropdown-toggle font-weight-bold" id="navbarDropdownMenuLink" data-toggle="dropdown">
+                          <a href="#" class="nav-link text-dark dropdown-toggle font-weight-bold" id="navbarDropdownMenuLink" data-toggle="dropdown">
                            {{Auth::user()->application->name ?? 'ADMIN'}}
                             <i class="now-ui-icons ui-1_settings-gear-63" aria-hidden="true"></i>
                           </a>

@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\RoleUser;
 use App\Models\User;
-use Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Validator;
@@ -17,84 +16,33 @@ class UsersController extends Controller
 {
 
     public function home(){
-        abort_if(Gate::denies('user_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
+     
         return view('user.home'); 
     }
 
     public function index()
     {
-        abort_if(Gate::denies('admin_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        $users = RoleUser::whereIn('role_id',['2'])->get();
 
-        $accounts = RoleUser::whereIn('role_id',['1'])->get();
-
-        return view('administration.accounts.accounts', compact('accounts'));
+        return view('admin.users.users', compact('users'));
     }
 
-    public function create()
+    public function status(User $account)
     {
-        
-    }
-
-    public function store(Request $request)
-    {
-        date_default_timezone_set('Asia/Manila');
-        $validated =  Validator::make($request->all(), [
-            'email'                 => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password'              => ['required', 'string', 'min:8'],
-        ]);
-        if ($validated->fails()) {
-            return response()->json(['errors' => $validated->errors()]);
-        }
-        $account = User::create([
-            'email'  => $request->input('email'),
-            'password' => Hash::make($request->input('password')),
-            'isApproved'          => 1,
-            'email_verified_at'     => date("Y-m-d H:i:s"),
-        ]);
-        RoleUser::insert([
-            'user_id' => $account->id,
-            'role_id' => 1,
-        ]);
-        return response()->json(['success' => 'Added Successfully.']);
-
-    }
-
-    public function edit(User $account)
-    {
-        $role = RoleUser::where('user_id', $account->id)->first();
-
-        if (request()->ajax()) {
-            return response()->json([
-                'email'              => $account->email,
+        if($account->isApproved == 1){
+            $account->update([
+                'isApproved'    => 0
+            ]);
+        }else{
+            $account->update([
+                'isApproved'    => 1
             ]);
         }
-    }
 
-    public function update(Request $request, User $account)
-    {
-        date_default_timezone_set('Asia/Manila');
-        $validated =  Validator::make($request->all(), [
-            'email'                 => ['required', 'string', 'email', 'max:255', 'unique:users,email,' .$account->id,],
-        ]);
-        if ($validated->fails()) {
-            return response()->json(['errors' => $validated->errors()]);
-        }
-
-        User::find($account->id)->update([
-            'email'  => $request->input('email'),
-            'password' => Hash::make($request->input('password')),
-        ]);
+       
         return response()->json(['success' => 'Updated Successfully.']);
     }
-
-   
-
-    public function destroy(User $account)
-    {
-        RoleUser::where('user_id',$account->id)->delete();
-        return response()->json(['success' => $account->delete()]);
-    }
+    
 
     public function changepassword()
     {

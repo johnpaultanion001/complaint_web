@@ -2,7 +2,7 @@
 @section('content')
 <div class="col-xl-12">
     <div class="row">
-        <div class="col-md-12  mt-4 text-white">
+        <div class="col-md-12  mt-4 text-dark">
             <h1>
                 HOME
             </h1>

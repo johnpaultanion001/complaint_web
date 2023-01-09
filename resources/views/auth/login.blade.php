@@ -3,15 +3,16 @@
 
 <div class="col-xl-12">
     <div class="row">
-        <div class="col-xl-10 mx-auto mt-5">
-          <div class="card card-signup d-block mx-auto" >
+        <div class="col-xl-7 mx-auto mt-5">
+          <div class="card d-block mx-auto" >
             <div class="card-grey py-4">
               <form method="POST" action="{{ route('login') }}">
                 @csrf
                 <div class="card-header text-center px-3 px-md-4 py-0">
                 
-                  <img  src="/assets/images/logo.png" alt="logo" width="80" height="70" class="z-depth-2">
-                  <p style="font-weight: 700; line-height: 1; font-size: 14px;"><b>MEMBER LOGIN</b></p>
+                  <img  src="/assets/images/logo.jpg" alt="logo" width="100" height="90" class="z-depth-2 mb-5">
+            
+                  <p style="font-weight: 700; line-height: 1; font-size: 14px;"><b>ADMIN LOGIN</b></p>
                   <hr>
                 </div>
           
@@ -41,7 +42,7 @@
 
                   
                 </div>
-                <p class="text-center mt-3 color-black" style="font-size: 15px; font-weight: 500;">Do not have an account yet? <a href="/register"><b class="color-black" style="font-weight: 700">Register here</b></a></p>
+               
               </form>
             </div>
           </div>

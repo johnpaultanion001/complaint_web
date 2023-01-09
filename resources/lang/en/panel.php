@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'site_title' => 'UNIFIED INTERNSHIP PROGRAM',
+    'site_title' => 'MAYAMOT NATIONAL HIGH SCHOOL',
 ];
