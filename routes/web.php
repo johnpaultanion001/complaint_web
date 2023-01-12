@@ -27,6 +27,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::get('/edit_account',  'UsersController@edit_account')->name('accounts.edit_account');
     Route::post('/edit_account/{account}',  'UsersController@edit_account_update')->name('accounts.edit_account_update');
 
+
+    Route::resource('complaint_history', 'ComplaintHistoryController');
    
 });
 

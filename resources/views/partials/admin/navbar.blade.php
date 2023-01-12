@@ -31,6 +31,11 @@
                             <p>USERS</p>
                           </a>
                         </li>
+                        <li class="nav-item">
+                          <a class="nav-link text-dark {{ request()->is('admin/complaint_history')  ? 'active' : '' }}" href="/admin/complaint_history">
+                            <p>COMPLAINTS HISTORY</p>
+                          </a>
+                        </li>
                       @endcan
                     
                     @else

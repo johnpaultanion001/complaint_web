@@ -14,7 +14,7 @@
 </style>
 
 <div class="center">
-    <img src="http://uip.melhamconstruction.ph/wp-content/uploads/2021/12/cropped-uiplogo-90x74.png" alt="logo" width="100"/>
+    <img src="https://www.cms.gov/sites/default/files/2020-09/HospitalTransparencyIcons_Complaint.png" alt="logo" width="100"/>
     <br>
     <br>
     <strong style="font-size: 22px; text-transform: uppercase;">{{ $content['notif_message'] }}</strong>
